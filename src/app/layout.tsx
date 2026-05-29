@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,10 +27,10 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+       className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
     >
-      <body className="min-h-full flex flex-col">        
-        <header>
+      <body className="flex flex-col min-h-screen ">
+        <header className="">
           <nav className="flex">
             <a href="/" className="p-2 rounded hover:bg-gray-100">
               메인
@@ -38,9 +40,9 @@ export default function RootLayout({
             </a>
           </nav>
         </header>
-        <main>{children}</main>
-        <footer>푸터</footer>
-        </body>
+        <main className="flex-1 flex flex-col">{children}</main>
+        <footer className="text-center p-2">푸터</footer>
+      </body>
     </html>
   );
 }
