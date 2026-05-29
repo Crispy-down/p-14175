@@ -1,9 +1,11 @@
 "use client";
 
 import { apiFetch } from "@/lib/backend/client";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const router = useRouter();
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
@@ -36,7 +38,8 @@ export default function Page() {
         content: contentTextarea.value,
       }),
     }).then((data) => {
-      alert(data.msg);
+        alert(data.msg);
+        router.replace(`/posts/${data.data.id}`);
     });
   };
 
@@ -50,6 +53,7 @@ export default function Page() {
           type="text"
           name="title"
           placeholder="제목"
+          autoFocus
         />
         <textarea
           className="border p-2 rounded"
